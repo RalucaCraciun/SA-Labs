@@ -7,15 +7,21 @@ import java.util.List;
 
 @Component
 public class LibraryFacade {
+    private final BookService bookService;
 
-    // TODO: Use BookService and other services to simplify the interaction with multiple subsystems
-
-    public void addBook(Book book) {
-        // TODO: Add book to the library through service layer
+    public LibraryFacade(BookService bookService) {
+        this.bookService = bookService;
     }
 
-    public List<Book> getFeaturedBooks() {
-        // TODO: Return a list of featured books using the decorator pattern
-        return null;
+    public Book addBook(Book book) {
+        return bookService.saveBook(book);
+    }
+
+    public List<Book> findBooksByCategory(String category) {
+        return bookService.findByCategory(category);
+    }
+
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
     }
 }

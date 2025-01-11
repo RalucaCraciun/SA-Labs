@@ -12,7 +12,7 @@ public class PlaceOrderCommand implements OrderCommand {
 
     @Override
     public void execute() {
-        // TODO: Implement order placement logic
+        order.updateStatus("Placed");
         System.out.println("Order placed successfully: " + order.getId());
     }
 }

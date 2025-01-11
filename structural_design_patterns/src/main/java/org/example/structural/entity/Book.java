@@ -7,25 +7,32 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
-import org.example.structural.service.BookDecorator;
 
 
 @Entity
 @Data
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
-public class Book implements BookDecorator {
+public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
+    private String title;
+    private String author;
+    private String category;
+    private double price;
 
-    String title;
-    String author;
-    double price;
+    public Book() {}
 
-    // TODO: Implement description and price methods
-    public String getDescription() {
-        return title + " by " + author;
+    public Book(String title, String author, String category, double price) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.price=price;
+    }
+
+    protected String getDescription() {
+        return getTitle();
     }
 }
